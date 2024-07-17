@@ -24,9 +24,22 @@ const id = Number(request.params.id );
 const user = users.find((user)=> id === user.id);
 respond.send(user);
 });
- 
 
+// post: for creating new user
+app.post('/api/users/:id',(request,respond)=>{
+respond.json({status : "pending"});
+});
 
+// patch : for updating user with id
+app.patch('/api/users/:id',(request,respond)=>{
+    respond.json({status : "pending"});
+    });
+
+// delete : for deleting user with id 
+app.delete('/api/users/:id',(request,respond)=>{
+    respond.json({status : "pending"});
+    });
+    
 // hosting webserver at localhost:4500
 app.listen(PORT,()=>{
 console.log("server started ");
