@@ -1,0 +1,13 @@
+                **********     REST API - JSON data     **********
+
+
+GET/users -> list all users
+
+GET/users/1 -> GET the user with ID=1
+GET/users/2 -> GET the user with ID=2
+
+POST/user -> create new user
+
+PATCH/user/1 -> edit the user data with ID 1
+
+DELETE/user/1 -> delete the user with ID 1
