@@ -1,7 +1,11 @@
 const express = require('express');
 const users = require('./MOCK_DATA.json');
 const app = express();
+const fs= require('fs');
 const PORT = 4500 ;
+
+// middlewares --> plugins
+app.use(express.urlencoded({extended:false}));
 
 // REST API (returning json data) 
 app.get('/api/users',(request,respond)=>{
@@ -26,8 +30,13 @@ respond.send(user);
 });
 
 // post: for creating new user
-app.post('/api/users/:id',(request,respond)=>{
-respond.json({status : "pending"});
+app.post('/api/users',(request,respond)=>{
+    const body = request.body;
+    users.push({...body , id :users.length +1} );
+    fs.writeFile('./MOCK_DATA.json',JSON.stringify(users),(error,data)=>{
+        respond.json({status : "success" , id : users.length });
+    })
+
 });
 
 // patch : for updating user with id
@@ -39,7 +48,7 @@ app.patch('/api/users/:id',(request,respond)=>{
 app.delete('/api/users/:id',(request,respond)=>{
     respond.json({status : "pending"});
     });
-    
+
 // hosting webserver at localhost:4500
 app.listen(PORT,()=>{
 console.log("server started ");
