@@ -1,13 +1,17 @@
                 **********     REST API - JSON data     **********
 
 
-GET/users -> list all users
+GET/users -> list all users (html rendering)
+GET/API/users -> list all users (JSON)
 
-GET/users/1 -> GET the user with ID=1
-GET/users/2 -> GET the user with ID=2
+GET/API/users/1 -> GET the user with ID=1 (JSON) 
+GET/API/users/2 -> GET the user with ID=2 (JSON)
 
-POST/user -> create new user
+dynamic path parameter ---->  ( GET/api/users/:ID )
+:ID --> variable
 
-PATCH/user/1 -> edit the user data with ID 1
+POST/API/user/1 -> create new user with ID=1 (JSON)
 
-DELETE/user/1 -> delete the user with ID 1
+PATCH/API/user/1 -> edit the user data with ID 1 (JSON)
+
+DELETE/API/user/1 -> delete the user with ID 1 (JSON)
