@@ -10,6 +10,10 @@ app.use(express.urlencoded({extended:false}));
 // REST API (returning json data) 
 app.get('/api/users',(request,respond)=>{
   respond.json(users);
+  const log = `requesting server on get request : ${Date()} \n`;
+  fs.appendFile("./log.txt",log,(error,data)=>{
+    
+  })
 });
 
 // REST API (returning names of users in html document in our browser)
@@ -27,6 +31,10 @@ app.get('/api/users/:id',(request ,respond)=>{
 const id = Number(request.params.id );
 const user = users.find((user)=> id === user.id);
 respond.send(user);
+const log1 = `requesting server on get request on id ${user.id} : ${Date()} \n`;
+fs.appendFile("./log.txt",log1 ,(error,data)=>{
+  
+})
 });
 
 // post: for creating new user
@@ -46,7 +54,7 @@ app.patch('/api/users/:id',(request,respond)=>{
 
 // delete : for deleting user with id 
 app.delete('/api/users/:id',(request,respond)=>{
-    respond.json({status : "pending"});
+    respond.json({status : "success" , id : id });
     });
 
 // hosting webserver at localhost:4500
