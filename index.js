@@ -2,8 +2,23 @@ const express = require('express');
 const users = require('./MOCK_DATA.json');
 const app = express();
 const fs= require('fs');
+const mongoose = require('mongoose');
+const { type } = require('os');
 const PORT = 4500 ;
 
+mongoose.connect('mongodb://127.0.0.1:27017/lib')
+.then(()=> console.log("Mongoose connected"))
+.catch((err)=> console.log("mongoose error",err));
+//schema
+const userSchema = new mongoose.Schema({
+    firstName: { type: String , require: true},
+    lastName: {type: String },
+    email:{ type: String , require:true , unique: true},
+    job_title:{type: String},
+    gender:{type: String}
+});
+
+const user = mongoose.model("user",userSchema);
 // middlewares --> plugins
 app.use(express.urlencoded({extended:false}));
 
